@@ -181,10 +181,13 @@ class StatisticsViewModel(
             var body = ""
             try {
                 val result = motivationQuotesAPI.getQuote().body()
-                body = if (result != null) {
+                Log.i(this.TAG, "getQuote: $result")
+                body = if (!result.isNullOrEmpty()) {
+                    Log.i(this.TAG, "getQuote: Successful")
                     result[0].quote
                 } else {
-                    ""
+                    Log.i(this.TAG, "getQuote: Failed")
+                    "Seize the day, not the person."
                 }
             } catch (e: Exception) {
                 Log.e(this.TAG, "${e.message}")
